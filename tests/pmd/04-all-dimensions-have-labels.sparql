@@ -6,11 +6,9 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT DISTINCT ?dim WHERE {
   GRAPH ?dsgraph {
-    {
-      ?s qb:dimension ?dim .
-      FILTER NOT EXISTS {
-        ?dim rdfs:label ?label .
-      }
-    }
+    ?s qb:dimension ?dim .
+  }
+  FILTER NOT EXISTS {
+    ?dim rdfs:label ?label .
   }
 }
