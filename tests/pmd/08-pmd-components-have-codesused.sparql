@@ -1,0 +1,14 @@
+# In PMD all dataset components have pmdq:codesUsed
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX pmdq: <http://publishmydata.com/def/qb/>
+
+SELECT ?ds ?comp
+WHERE {
+  GRAPH ?dsgraph {
+    ?ds a qb:DataSet ;
+          qb:structure [ qb:component ?comp ] .
+    FILTER NOT EXISTS {
+      ?comp pmdq:codesUsed ?used
+    }
+  }
+}
