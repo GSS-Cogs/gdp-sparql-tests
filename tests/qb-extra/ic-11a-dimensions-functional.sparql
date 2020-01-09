@@ -1,0 +1,15 @@
+# Every qb:Observation has a single value for each dimension declared in its associated qb:DataStructureDefinition.
+PREFIX qb:      <http://purl.org/linked-data/cube#>
+
+SELECT * {
+  GRAPH ?dsgraph {
+    {
+      ?obs qb:dataSet/qb:structure/qb:component/qb:componentProperty ?dim .
+      ?dim a qb:DimensionProperty
+    } UNION {
+      ?obs qb:dataSet/qb:structure/qb:component/qb:dimension ?dim .
+    }
+    ?obs ?dim ?v1, ?v2 .
+    FILTER (?v1 != ?v2) .
+  }
+} LIMIT 10
