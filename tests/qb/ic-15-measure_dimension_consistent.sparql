@@ -8,11 +8,11 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
   GRAPH ?dsgraph {
-    # Observation in a measureType-cube
-    ?obs qb:dataSet/qb:structure ?dsd ;
-         qb:measureType ?measure .
-    ?dsd qb:component/qb:componentProperty qb:measureType .
-    # Must have value for its measureType
-    FILTER NOT EXISTS { ?obs ?measure [] }
+      # Observation in a measureType-cube
+      ?obs qb:dataSet/qb:structure ?dsd ;
+           qb:measureType ?measure .
+
+      # Must have value for its measureType
+      FILTER NOT EXISTS { ?obs ?measure [] }
   }
 }
