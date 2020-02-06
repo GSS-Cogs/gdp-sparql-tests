@@ -8,15 +8,15 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
   GRAPH ?dsgraph {
-    # Observation with measureType
-    ?obs qb:dataSet/qb:structure ?dsd ;
-         qb:measureType ?measure ;
-         ?omeasure [] .
-    # Any measure on the observation
-    ?dsd qb:component/qb:componentProperty qb:measureType ;
-         qb:component/qb:componentProperty ?omeasure .
-    ?omeasure a qb:MeasureProperty .
-    # Must be the same as the measureType
-    FILTER (?omeasure != ?measure)
+
+  { SELECT (count(DISTINCT ?obs1) as ?uniqueMeasureCount) WHERE {
+        ?obs1 a qb:Observation;
+        qb:measureType ?measure
+      }}
+  {SELECT (count(?obs2) as ?measureCount) WHERE {
+        ?obs2 a qb:Observation;
+        qb:measureType ?measure
+      }}
+  FILTER (?uniqueMeasureCount != ?measureCount)
   }
 }
