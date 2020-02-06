@@ -1,13 +1,15 @@
 
-### Review of IC SPARQL tests.
+### Review of IC SPARQL tests in /tests/qb.
 
 Status as of: 5/2/2020
 
 Where feasible, if a test is failing because we don't fully prescribe to the assumed datacube model, I've tried to get to the same result via alternate logic.
 
-Where enabled is False the test has been passing trivially, sp I've removed the .sparql from the files to stop the test runner picking them up but have otherwise left them intact.
+Where enabled is False the test has been passing trivially, so I've removed the .sparql from the files to stop the test runner picking them up but have otherwise left them intact.
 
-| IC Number | Enabled       | Comments                   
+_Please note  - these are temporary changes to match the current structuring of out datacubes. The original branch state has been kepy under the "pristine" branch"._
+
+| /qb IC Number | Enabled       | Comments                   
 | --------------------------- | -----------------------------------|----------------
 ic-01-unique_dataset | True  | Appear to be working.
 ic-02-unique_dsd | True | Appear to be working.
