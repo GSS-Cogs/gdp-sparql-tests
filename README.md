@@ -7,7 +7,7 @@ Where feasible, if a test is failing because we don't fully prescribe to the ass
 
 Where enabled is False the test has been passing trivially, so I've removed the .sparql from the files to stop the test runner picking them up but have otherwise left them intact.
 
-_Please note  - these are temporary changes to match the current structuring of out datacubes. The original branch state has been kepy under the "pristine" branch"._
+_Please note  - these are temporary changes to match the current structuring of out datacubes. The original branch has been kept under the "pristine" branch name._
 
 | /qb IC Number | Enabled       | Comments                   
 | --------------------------- | -----------------------------------|----------------
