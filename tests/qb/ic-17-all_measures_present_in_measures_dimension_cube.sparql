@@ -13,8 +13,12 @@ SELECT * {
         {
             # Find the DSDs and check how many measures they have
             SELECT ?dsd (COUNT(?m) AS ?numMeasures) WHERE {
-                ?dsd qb:component/qb:componentProperty ?m.
-                ?m a qb:MeasureProperty .
+          		{
+                	?dsd qb:component/qb:componentProperty ?m .
+	                ?m a qb:MeasureProperty .
+          		} UNION {
+            		?dsd qb:component/qb:measure ?m .
+          		}
             } GROUP BY ?dsd
         }
 
@@ -27,12 +31,20 @@ SELECT * {
         ?obs2 qb:dataSet ?dataset ;
               qb:measureType ?m2 .
         FILTER NOT EXISTS {
-            ?dsd qb:component/qb:componentProperty ?dim .
-            FILTER (?dim != qb:measureType)
-            ?dim a qb:DimensionProperty .
-            ?obs1 ?dim ?v1 .
-            ?obs2 ?dim ?v2.
-            FILTER (?v1 != ?v2)
+        	{
+              ?dsd qb:component/qb:componentProperty ?dim .
+              FILTER (?dim != qb:measureType)
+              ?dim a qb:DimensionProperty .
+              ?obs1 ?dim ?v1 .
+              ?obs2 ?dim ?v2.
+              FILTER (?v1 != ?v2)
+	        } UNION {
+              ?dsd qb:component/qb:dimension ?dim .
+              FILTER (?dim != qb:measureType)
+              ?obs1 ?dim ?v1 .
+              ?obs2 ?dim ?v2.
+              FILTER (?v1 != ?v2)
+    	    }
         }
 
     } GROUP BY ?obs1 ?numMeasures

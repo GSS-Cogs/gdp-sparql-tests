@@ -8,11 +8,10 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
   GRAPH ?dsgraph {
-    ?obs qb:dataSet/qb:structure/qb:component/qb:componentProperty ?dim .
-    ?dim a qb:DimensionProperty ;
-        qb:codeList ?list .
-    ?list a skos:Collection .
-    ?obs ?dim ?v .
-    FILTER NOT EXISTS { ?v a skos:Concept . ?list skos:member+ ?v }
+    ?obs qb:dataSet/qb:structure/qb:component/qb:dimension ?dim .
+    ?obs ?dim ?v
   }
+  ?dim qb:codeList ?list .
+  ?list a skos:Collection .
+  FILTER NOT EXISTS { ?v a skos:Concept . ?list skos:member+ ?v }
 }
