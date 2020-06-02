@@ -1,3 +1,5 @@
+# Dimensions Max One Code List
+
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 
 SELECT (?dim AS ?dimWithTooManyCodeLists) ?cl1 ?cl2
