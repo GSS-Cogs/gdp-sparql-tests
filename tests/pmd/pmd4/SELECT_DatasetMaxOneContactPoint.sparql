@@ -10,8 +10,10 @@ PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
 
 SELECT ?dataset (COUNT(?o) AS ?count) 
 WHERE {
+  GRAPH ?mdgraph {
     ?dataset a pmdcat:Dataset .
     ?dataset dcat:contactPoint ?o
+  }
 }
 GROUP BY ?dataset
 HAVING (?count > 1)

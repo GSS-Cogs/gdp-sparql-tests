@@ -5,8 +5,10 @@ PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?dim 
 {
+  GRAPH ?dsgraph {
     ?ds qb:structure/qb:component/qb:dimension ?dim .
     ?dim a qb:DimensionProperty ;
          qb:codeList ?codeList .
-    FILTER NOT EXISTS { ?concept skos:inScheme ?codeList  }
+  }
+  FILTER NOT EXISTS { ?concept skos:inScheme ?codeList  }
 }

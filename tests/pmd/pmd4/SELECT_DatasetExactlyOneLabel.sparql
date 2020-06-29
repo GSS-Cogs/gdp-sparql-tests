@@ -10,6 +10,7 @@ PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?dataset ?count {
+  GRAPH ?mdgraph {
     {
         SELECT ?dataset (COUNT(?lbl1) AS ?count) 
         WHERE {
@@ -29,4 +30,5 @@ SELECT ?dataset ?count {
             BIND(0 AS ?count)
         }
     }
+  }
 }

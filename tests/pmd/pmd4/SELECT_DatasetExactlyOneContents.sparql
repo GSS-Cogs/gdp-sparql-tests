@@ -9,6 +9,7 @@ PREFIX dct:     <http://purl.org/dc/terms/>
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
 
 SELECT ?dataset ?count {
+  GRAPH ?mdgraph {
     {
         SELECT ?dataset (COUNT(?o) AS ?count) 
         WHERE {
@@ -27,4 +28,5 @@ SELECT ?dataset ?count {
             BIND(0 AS ?count)
         }
     }
+  }
 }

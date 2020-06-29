@@ -8,6 +8,7 @@ PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#> 
 
 SELECT ?record ?count {
+  GRAPH ?mdgraph {
     {
         SELECT ?record (COUNT(?mg) AS ?count) 
         WHERE {
@@ -26,4 +27,5 @@ SELECT ?record ?count {
             BIND(0 AS ?count)
         }
     }
+  }
 }
