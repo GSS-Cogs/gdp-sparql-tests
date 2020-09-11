@@ -7,8 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?slice qb:sliceStructure [qb:componentProperty ?dim] .
     FILTER NOT EXISTS { ?slice ?dim [] }
-  }
 }

@@ -6,13 +6,12 @@ PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
-SELECT * {
-  GRAPH ?dsgraph {
+SELECT *
+{
       # Observation in a measureType-cube
       ?obs qb:dataSet/qb:structure ?dsd ;
            qb:measureType ?measure .
       ?dsd qb:component/qb:componentProperty qb:measureType .
       # Must have value for its measureType
       FILTER NOT EXISTS { ?obs ?measure [] }
-  }
 }

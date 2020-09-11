@@ -7,8 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?sliceKey a qb:SliceKey .
     FILTER NOT EXISTS { [a qb:DataStructureDefinition] qb:sliceKey ?sliceKey }
-  }
 }

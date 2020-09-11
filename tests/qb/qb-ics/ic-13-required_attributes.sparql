@@ -7,10 +7,8 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?obs qb:dataSet/qb:structure/qb:component ?component .
     ?component qb:componentRequired "true"^^xsd:boolean ;
                qb:componentProperty ?attr .
     FILTER NOT EXISTS { ?obs ?attr [] }
-  }
 }

@@ -7,7 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     FILTER( ?allEqual )
     {
       # For each pair of observations test if all the dimension values are the same
@@ -21,5 +20,4 @@ SELECT * {
           BIND( ?value1 = ?value2 AS ?equal)
       } GROUP BY ?obs1 ?obs2
     }
-  }
 }

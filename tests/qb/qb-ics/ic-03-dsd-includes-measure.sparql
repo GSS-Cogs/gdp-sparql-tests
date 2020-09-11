@@ -7,8 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
-    ?dsd a qb:DataStructureDefinition .
-  }
+  ?dsd a qb:DataStructureDefinition .
   FILTER NOT EXISTS { ?dsd qb:component [qb:componentProperty|qb:measure [a qb:MeasureProperty]] }
 }

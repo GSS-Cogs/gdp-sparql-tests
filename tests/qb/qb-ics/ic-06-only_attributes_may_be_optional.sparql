@@ -3,12 +3,10 @@ PREFIX qb:  <http://purl.org/linked-data/cube#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?dsd qb:component ?componentSpec .
     ?componentSpec qb:componentRequired "false"^^xsd:boolean ;
                    qb:componentProperty ?component .
     FILTER NOT EXISTS {
       { ?component a qb:AttributeProperty } UNION { [] qb:attribute ?component }
     }
-  }
 }

@@ -1,4 +1,4 @@
-# Dataset Max One Creator
+# Dataset Max One Contact Point
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
@@ -10,10 +10,8 @@ PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
 
 SELECT ?dataset (COUNT(?o) AS ?count) 
 WHERE {
-  GRAPH ?mdgraph {
     ?dataset a pmdcat:Dataset .
-    ?dataset dct:creator ?o
-  }
+    ?dataset dcat:contactPoint ?o
 }
 GROUP BY ?dataset
 HAVING (?count > 1)

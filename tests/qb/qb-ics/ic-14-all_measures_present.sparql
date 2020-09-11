@@ -7,7 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     # Observation in a non-measureType cube
     ?obs qb:dataSet/qb:structure ?dsd .
     FILTER NOT EXISTS { ?dsd qb:dimension qb:measureType }
@@ -16,5 +15,4 @@ SELECT * {
     ?dsd qb:dimension ?measure .
     ?measure a qb:MeasureProperty;
     FILTER NOT EXISTS { ?obs ?measure [] }
-  }
 }

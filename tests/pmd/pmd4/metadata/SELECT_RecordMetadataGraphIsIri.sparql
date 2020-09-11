@@ -1,4 +1,4 @@
-# Dataset Contact Point Is Iri
+# Record Metadata Graph Is Iri
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
@@ -7,10 +7,8 @@ PREFIX dcat:    <http://www.w3.org/ns/dcat#>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#> 
 
-SELECT ?dataset ?o {
-  GRAPH ?mdgraph {
-    ?dataset a pmdcat:Dataset .
-    ?dataset dcat:contactPoint ?o
-    FILTER(!isIRI(?o))
-  }
+SELECT ?record ?mg {
+    ?record a dcat:CatalogRecord .
+    ?record pmdcat:metadataGraph ?mg .
+    FILTER(!isIRI(?mg))
 }

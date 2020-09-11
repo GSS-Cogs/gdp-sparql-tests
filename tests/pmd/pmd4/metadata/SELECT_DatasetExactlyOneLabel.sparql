@@ -1,4 +1,4 @@
-# Dataset Exactly One Contents
+# Dataset Exactly One Label
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
@@ -7,14 +7,15 @@ PREFIX dcat:    <http://www.w3.org/ns/dcat#>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
 PREFIX dct:     <http://purl.org/dc/terms/> 
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?dataset ?count {
-  GRAPH ?mdgraph {
     {
-        SELECT ?dataset (COUNT(?o) AS ?count) 
+        SELECT ?dataset (COUNT(?lbl1) AS ?count) 
         WHERE {
             ?dataset a pmdcat:Dataset .
-            ?dataset pmdcat:datasetContents ?o
+            ?dataset rdfs:label ?lbl1, ?lbl2 .
+            FILTER(?lbl1 != ?lbl2)
         }
         GROUP BY ?dataset
         HAVING (?count > 1)
@@ -23,10 +24,9 @@ SELECT ?dataset ?count {
         SELECT ?dataset ?count {
             ?dataset a pmdcat:Dataset .
             FILTER NOT EXISTS {
-                ?dataset pmdcat:datasetContents ?o 
+                ?dataset rdfs:label ?o 
             }
             BIND(0 AS ?count)
         }
     }
-  }
 }

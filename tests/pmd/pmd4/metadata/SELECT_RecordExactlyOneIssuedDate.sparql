@@ -1,19 +1,18 @@
-# Record Exactly One Metadata Graph
+# Record Exactly One Issued Date
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 PREFIX ui:      <http://www.w3.org/ns/ui#>
 PREFIX dcat:    <http://www.w3.org/ns/dcat#>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
-PREFIX pmdcat:  <http://publishmydata.com/pmdcat#> 
+PREFIX dct:     <http://purl.org/dc/terms/> 
 
 SELECT ?record ?count {
-  GRAPH ?mdgraph {
     {
-        SELECT ?record (COUNT(?mg) AS ?count) 
+        SELECT ?record (COUNT(?o) AS ?count) 
         WHERE {
             ?record a dcat:CatalogRecord .
-            ?record pmdcat:metadataGraph ?mg
+            ?record dct:issued ?o 
         }
         GROUP BY ?record
         HAVING (?count > 1)
@@ -22,10 +21,9 @@ SELECT ?record ?count {
         SELECT ?record ?count {
             ?record a dcat:CatalogRecord .
             FILTER NOT EXISTS {
-                ?record pmdcat:metadataGraph ?mg
+                ?record dct:issued ?o 
             }
             BIND(0 AS ?count)
         }
     }
-  }
 }

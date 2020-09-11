@@ -1,4 +1,4 @@
-# Dataset Graph Is Iri
+# Record Primary Topic Is Dataset
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
@@ -7,10 +7,10 @@ PREFIX dcat:    <http://www.w3.org/ns/dcat#>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#> 
 
-SELECT ?dataset ?g {
-  GRAPH ?mdgraph {
-    ?dataset a pmdcat:Dataset .
-    ?dataset pmdcat:graph ?g 
-    FILTER(!isIRI(?g))
-  }
+SELECT ?record {
+    ?record a dcat:CatalogRecord .
+    ?record foaf:primaryTopic ?pt .
+    FILTER NOT EXISTS {
+        ?pt a pmdcat:Dataset
+    }
 }

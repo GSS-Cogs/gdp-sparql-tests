@@ -4,7 +4,6 @@ PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     {
       ?dim a qb:DimensionProperty ; rdfs:range skos:Concept .
     } UNION {
@@ -12,5 +11,4 @@ SELECT * {
       ?dim rdfs:range skos:Concept .
     }
     FILTER NOT EXISTS { ?dim qb:codeList [] }
-  }
 }

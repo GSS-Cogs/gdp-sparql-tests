@@ -9,7 +9,6 @@ PREFIX dct:     <http://purl.org/dc/terms/>
 PREFIX pmdcat:  <http://publishmydata.com/pmdcat#>
 
 SELECT ?dataset {
-  GRAPH ?mdgraph {
     ?dataset a pmdcat:Dataset .
     FILTER(
         NOT EXISTS {
@@ -30,5 +29,4 @@ SELECT ?dataset {
             }
         }
     )
-  }
 }

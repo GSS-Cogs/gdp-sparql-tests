@@ -7,7 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     {
       # Slice has a key
       ?slice a qb:Slice .
@@ -18,5 +17,4 @@ SELECT * {
              qb:sliceStructure ?key1, ?key2;
       FILTER (?key1 != ?key2)
     }
-  }
 }

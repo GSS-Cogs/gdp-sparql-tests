@@ -3,7 +3,6 @@
 PREFIX qb: <http://purl.org/linked-data/cube#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?ds a qb:DataSet ;
       qb:structure/qb:component ?comp1, ?comp2 .
     FILTER (?comp1 != ?comp2) .
@@ -20,5 +19,4 @@ SELECT * {
       ?dim2 a qb:DimensionProperty .
     }
     FILTER (?dim1 = ?dim2)
-  }
 }

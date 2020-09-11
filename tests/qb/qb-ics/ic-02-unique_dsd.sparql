@@ -7,7 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     {
       # Check dataset has a dsd
       ?dataset a qb:DataSet .
@@ -18,5 +17,4 @@ SELECT * {
          qb:structure ?dsd1, ?dsd2 .
       FILTER (?dsd1 != ?dsd2)
     }
-  }
 }

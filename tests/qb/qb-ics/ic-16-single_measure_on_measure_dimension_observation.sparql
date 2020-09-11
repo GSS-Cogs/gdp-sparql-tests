@@ -7,8 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
-
   { SELECT (count(DISTINCT ?obs1) as ?uniqueMeasureCount) WHERE {
         ?obs1 a qb:Observation;
         qb:measureType ?measure
@@ -18,5 +16,4 @@ SELECT * {
         qb:measureType ?measure
       }}
   FILTER (?uniqueMeasureCount != ?measureCount)
-  }
 }

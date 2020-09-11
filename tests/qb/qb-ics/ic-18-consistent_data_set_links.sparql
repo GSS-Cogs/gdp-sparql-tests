@@ -7,9 +7,7 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     ?dataset qb:slice       ?slice .
     ?slice   qb:observation ?obs .
     FILTER NOT EXISTS { ?obs qb:dataSet ?dataset . }
-  }
 }

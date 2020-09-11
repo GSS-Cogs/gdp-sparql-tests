@@ -8,7 +8,6 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT *
 {
-  GRAPH ?dsgraph {
     {
       # Check observation has a data set
       ?obs a qb:Observation .
@@ -19,5 +18,4 @@ SELECT *
          qb:dataSet ?dataset1, ?dataset2 .
       FILTER (?dataset1 != ?dataset2)
     }
-  }
 }

@@ -7,7 +7,6 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-  GRAPH ?dsgraph {
     # Count number of other measures found at each point
     SELECT ?numMeasures (COUNT(?obs2) AS ?count) WHERE {
         {
@@ -49,5 +48,4 @@ SELECT * {
 
     } GROUP BY ?obs1 ?numMeasures
       HAVING (?count != ?numMeasures)
-  }
 }
