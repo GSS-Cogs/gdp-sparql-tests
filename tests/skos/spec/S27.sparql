@@ -1,0 +1,7 @@
+# S27 skos:related is disjoint with the property skos:broaderTransitive.
+SELECT DISTINCT *
+WHERE {
+   ?x0 <http://www.w3.org/2004/02/skos/core#related> ?x1 .
+   ?x0 <http://www.w3.org/2004/02/skos/core#broaderTransitive> ?x1 .
+}
+

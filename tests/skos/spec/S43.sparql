@@ -1,0 +1,17 @@
+# S43 skos:broadMatch owl:inverseOf skos:narrowMatch
+SELECT DISTINCT *
+WHERE {
+   {
+      ?x0 <http://www.w3.org/2004/02/skos/core#narrowMatch> ?x1 .
+      FILTER NOT EXISTS {
+         ?x1 <http://www.w3.org/2004/02/skos/core#broadMatch> ?x0 .
+      }
+   }
+   UNION
+   {
+      ?x0 <http://www.w3.org/2004/02/skos/core#broadMatch> ?x1 .
+      FILTER NOT EXISTS {
+         ?x1 <http://www.w3.org/2004/02/skos/core#narrowMatch> ?x0 .
+      }
+   }
+}

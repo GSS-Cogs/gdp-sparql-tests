@@ -1,0 +1,13 @@
+# S32 skos:member has range skos:Concept or skos:Collection
+
+SELECT DISTINCT *
+FROM <tag:stardog:api:context:all>
+WHERE {
+   ?x1 <http://www.w3.org/2004/02/skos/core#member> ?x0 .
+   FILTER NOT EXISTS {
+      ?x0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+   }
+   FILTER NOT EXISTS {
+      ?x0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Collection> .
+   }
+} LIMIT 10

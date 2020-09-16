@@ -1,0 +1,8 @@
+# S44 skos:closeMatch is a symmetric property
+SELECT DISTINCT *
+WHERE {
+   ?x0 <http://www.w3.org/2004/02/skos/core#closeMatch> ?x1 .
+   FILTER NOT EXISTS {
+      ?x1 <http://www.w3.org/2004/02/skos/core#closeMatch> ?x0 .
+   }
+}

@@ -1,0 +1,7 @@
+# S46-2 skos:exactMatch is disjoint with skos:broadMatch.
+SELECT DISTINCT *
+WHERE {
+   ?x0 <http://www.w3.org/2004/02/skos/core#exactMatch> ?x1 .
+   ?x0 <http://www.w3.org/2004/02/skos/core#broadMatch> ?x1 .
+}
+
