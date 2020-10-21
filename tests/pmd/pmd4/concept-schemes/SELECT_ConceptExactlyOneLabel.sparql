@@ -1,4 +1,4 @@
-# Concept Exactly One Label
+# Concept Exactly One Label (or prefLabel)
 
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
@@ -23,6 +23,9 @@ SELECT ?concept ?count {
             ?concept a skos:Concept .
             FILTER NOT EXISTS {
                 ?concept rdfs:label ?lbl .
+            }
+            FILTER NOT EXISTS {
+                ?concept skos:prefLabel ?lbl .
             }
             BIND(0 AS ?count)
         }
