@@ -5,6 +5,7 @@ PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX sdmxa:    <http://purl.org/linked-data/sdmx/2009/attribute#>
 
 SELECT *
 {
@@ -14,4 +15,12 @@ SELECT *
       ?dsd qb:component/qb:componentProperty qb:measureType .
       # Must have value for its measureType
       FILTER NOT EXISTS { ?obs ?measure [] }
+      
+      # However, if an sdmxa:obsStatus is set, then it will explain why a value is not present.
+      # Note that this means we're introducing a violation to the qb specification.
+      FILTER NOT EXISTS { 
+        ?dsd qb:component/qb:componentProperty sdmxa:obsStatus.
+        
+        ?obs sdmxa:obsStatus [].
+      }
 }
