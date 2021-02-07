@@ -6,7 +6,7 @@ PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
-SELECT * {
-    ?slice qb:sliceStructure [qb:componentProperty ?dim] .
-    FILTER NOT EXISTS { ?slice ?dim [] }
+ASK {
+  ?slice qb:sliceStructure [qb:componentProperty ?dim] .
+  FILTER NOT EXISTS { ?slice ?dim [] }
 }

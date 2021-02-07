@@ -3,12 +3,8 @@ PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX qb:      <http://purl.org/linked-data/cube#>
 PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 
-SELECT * {
-    {
-      ?dim a qb:DimensionProperty ; rdfs:range skos:Concept .
-    } UNION {
-      [] qb:dimension ?dim .
-      ?dim rdfs:range skos:Concept .
-    }
-    FILTER NOT EXISTS { ?dim qb:codeList [] }
+ASK {
+  ?dim a qb:DimensionProperty ;
+       rdfs:range skos:Concept .
+  FILTER NOT EXISTS { ?dim qb:codeList [] }
 }
