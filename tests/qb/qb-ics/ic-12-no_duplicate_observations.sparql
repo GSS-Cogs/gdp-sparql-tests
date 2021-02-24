@@ -7,17 +7,18 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
-    FILTER( ?allEqual )
-    {
-      # For each pair of observations test if all the dimension values are the same
-      SELECT (MIN(?equal) AS ?allEqual) WHERE {
-          ?obs1 qb:dataSet ?dataset .
-          ?obs2 qb:dataSet ?dataset .
-          FILTER (?obs1 != ?obs2)
-          ?dataset qb:dimension ?dim .
-          ?obs1 ?dim ?value1 .
-          ?obs2 ?dim ?value2 .
-          BIND( ?value1 = ?value2 AS ?equal)
-      } GROUP BY ?obs1 ?obs2
-    }
+  FILTER( ?allEqual )
+  {
+    # For each pair of observations test if all the dimension values are the same
+    SELECT (MIN(?equal) AS ?allEqual) WHERE {
+        ?obs1 qb:dataSet ?dataset .
+        ?obs2 qb:dataSet ?dataset .
+        FILTER (?obs1 != ?obs2)
+        ?dataset qb:structure/qb:component/qb:componentProperty ?dim .
+        ?dim a qb:DimensionProperty .
+        ?obs1 ?dim ?value1 .
+        ?obs2 ?dim ?value2 .
+        BIND( ?value1 = ?value2 AS ?equal)
+    } GROUP BY ?obs1 ?obs2
+  }
 }
