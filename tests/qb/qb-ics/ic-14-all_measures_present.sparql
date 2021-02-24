@@ -8,11 +8,11 @@ PREFIX owl:     <http://www.w3.org/2002/07/owl#>
 
 SELECT * {
     # Observation in a non-measureType cube
-    ?obs qb:dataSet/qb:structure ?dsd .
-    FILTER NOT EXISTS { ?dsd qb:dimension qb:measureType }
+    ?dsd a qb:DataStructureDefinition .
+    FILTER NOT EXISTS { ?dsd qb:component/qb:componentProperty qb:measureType }
 
     # verify every measure is present
-    ?dsd qb:dimension ?measure .
+    ?dsd qb:component/qb:componentProperty ?measure .
     ?measure a qb:MeasureProperty;
     FILTER NOT EXISTS { ?obs ?measure [] }
 }
