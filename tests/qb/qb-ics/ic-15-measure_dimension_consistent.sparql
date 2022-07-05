@@ -19,7 +19,7 @@ SELECT *
       # However, if an sdmxa:obsStatus is set, then it will explain why a value is not present.
       # Note that this means we're introducing a violation to the qb specification.
       FILTER NOT EXISTS { 
-        ?dsd qb:component/qb:componentProperty sdmxa:obsStatus.
+        ?dsd qb:component/qb:componentProperty/rdfs:subPropertyOf* sdmxa:obsStatus.
         
         ?obs sdmxa:obsStatus [].
       }
